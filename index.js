@@ -5,6 +5,7 @@ const path = require('path')
 const { engine } = require('express-edge')
 
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 
 const app = new express()
 
@@ -18,6 +19,9 @@ app.use(express.static('public'))
 app.use(engine)
 
 app.set('views', `${__dirname}/views`);
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
 
@@ -34,6 +38,12 @@ app.get('/about', (req, res) => {
 app.get('/post', (req, res) => {
 
     res.render('post')
+
+})
+
+app.get('/post/store', (req, res) => {
+
+    res.render('create')
 
 })
 
