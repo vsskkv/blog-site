@@ -41,10 +41,16 @@ app.get('/post', (req, res) => {
 
 })
 
-app.get('/post/store', (req, res) => {
+app.get('/post/new', (req, res) => {
 
     res.render('create')
 
+})
+
+app.get('/post/store', (req, res) => {
+
+    console.log(req.body)
+    res.redirect('/')
 })
 
 app.get('/contact', (req, res) => {
