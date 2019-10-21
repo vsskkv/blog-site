@@ -7,6 +7,8 @@ const { engine } = require('express-edge')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
+const Post = require('./database/models/post')
+
 const app = new express()
 
 mongoose.connect('mongodb://localhost/node-js-blog', {
@@ -47,10 +49,11 @@ app.get('/post/new', (req, res) => {
 
 })
 
-app.get('/post/store', (req, res) => {
+app.post('/post/store', (req, res) => {
 
-    console.log(req.body)
-    res.redirect('/')
+    Post.create(req.body, (error, post) => {
+        res.redirect('/')
+    })
 })
 
 app.get('/contact', (req, res) => {
