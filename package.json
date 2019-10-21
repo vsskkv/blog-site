@@ -1,18 +1,27 @@
 {
-  "name": "Blog",
+  "name": "blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "node app blog",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "vikram",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-edge": "^2.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vsskkv/blog-site.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vsskkv/blog-site/issues"
+  },
+  "homepage": "https://github.com/vsskkv/blog-site#readme"
 }
