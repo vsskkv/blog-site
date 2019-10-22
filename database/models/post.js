@@ -1,20 +1,21 @@
 const mongoose = require('mongoose')
 
-//Users, posts, products
-// def of how 
 const PostSchema = new mongoose.Schema({
-
- title: String,
- subtitle: String,
- content: String,
- username: String,
- createdAt: {
-     type: Date,
-     default: new Date()
- }
-    
+  title: String,
+  subtitle: String,
+  content: String,
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  image: String,
+  createdAt: {
+    type: Date,
+    default: new Date()
+  }
 })
 
-const post = mongoose.model('post', PostSchema)
+const Post = mongoose.model('Post', PostSchema)
 
-module.exports = post 
+module.exports = Post

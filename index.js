@@ -1,11 +1,10 @@
 //blog site
 const express = require('express')
 const path = require('path')
-
 const { engine } = require('express-edge')
-
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const fileupload = require('express-fileupload')
 
 const Post = require('./database/models/post')
 
@@ -14,14 +13,12 @@ const app = new express()
 mongoose.connect('mongodb://localhost/node-js-blog', {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    })
+})
 
+app.use(fileupload())
 app.use(express.static('public'))
-
 app.use(engine)
-
 app.set('views', `${__dirname}/views`);
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -57,8 +54,17 @@ app.get('/post/new', (req, res) => {
 
 app.post('/post/store', (req, res) => {
 
-    Post.create(req.body, (error, post) => {
-        res.redirect('/')
+    const { image } = req.files
+
+    image.mv(path.resolve(__dirname, 'public/posts', image.name), (error) => {
+
+        Post.create({ 
+            ...req.body, 
+            image: `/posts/${image.name}`
+        }, (error, post) => {
+            res.redirect('/')
+        })
+
     })
 })
 
