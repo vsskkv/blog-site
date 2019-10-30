@@ -21,7 +21,7 @@ const loginUserController = require("./controllers/loginUser");
 const logoutController = require("./controllers/logout");
 
 const app = new express();
-mongoose.connect(process.env.DB_URI);
+mongoose.connect(process.env.DB_URI); 
 
 app.use(connectFlash());
 
@@ -33,7 +33,7 @@ cloudinary.config({
 
 const mongoStore = connectMongo(expressSession);
 
-app.use(
+app.use(  
   expressSession({
     secret: process.env.EXPRESS_SESSION_KEY,
     store: new mongoStore({
