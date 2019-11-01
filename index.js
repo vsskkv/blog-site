@@ -1,5 +1,5 @@
 require('dotenv').config();
-const expressEdge = require("express-edge");
+const { engine } = require("express-edge");
 const express = require("express");
 const edge = require("edge.js");
 const cloudinary = require('cloudinary');
@@ -44,7 +44,7 @@ app.use(
 
 app.use(fileUpload());
 app.use(express.static("public"));
-app.use(expressEdge);
+app.use(engine);
 app.set("views", `${__dirname}/views`);
 
 app.use("*", (req, res, next) => {
